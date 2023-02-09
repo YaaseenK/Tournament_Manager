@@ -1,3 +1,5 @@
+// USEeFFECT FOR GOOGLEaUTH
+import React, { useEffect, useState } from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Topbar from "./scenes/global/topbar";
 import Dashboard from "./scenes/dashboard";
@@ -8,6 +10,7 @@ import Sidebar from "./scenes/global/sidebar";
 import { initializeApp } from "firebase/app";
 import AuthGoogle from "./AuthGoogle";
 import firebase from "firebase/compat/app";
+import {onAuthStateChanged} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,7 +30,13 @@ function App() {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+const [user, setUser] = useState({email: '', uid: ''});
+useEffect(() => {
+  onAuthStateChanged(firebase.auth(), (user)=>{
+    console.log(user);
+    setUser({email: user.email, id: user.uid })
+  });
+});
   const [theme, colorMode] = useMode();
   // const [isSidebar, setIsSidebar] = useState(true);
   return (
