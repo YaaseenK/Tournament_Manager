@@ -4,7 +4,6 @@ const eventSchema = new Schema(
   {
     eventId: {
       type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
     },
     eventName: {
       type: String,
