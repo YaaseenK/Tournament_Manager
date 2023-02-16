@@ -14,10 +14,10 @@ const server = new ApolloServer({
 });
 app.use(expressjwt({
   algorithms: ['HS256'],
-  secret: 'secret000',  // 签名的密钥 或 PublicKey
-  credentialsRequired: true,  // 设置为 false 就不进行校验了，游客也可以访问
+  secret: 'secret000',  // public key
+  credentialsRequired: true,  
 }).unless({
-  path: ['/users/login',]  // 指定路径不经过 Token 解析
+  path: ['/users/login',]  
 }))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
